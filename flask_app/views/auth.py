@@ -61,8 +61,6 @@ def login():
             flash('登録のないメールアドレスです')
         elif not user.is_active:
             flash('アカウントがロックされているか、退会済のユーザーです')
-        elif user.admin_password:
-            flash('アカウントがロックされています')
         elif not user.validate_password(form.password.data):
             flash('パスワードが間違っています')
     return render_template('auth/login.html', form=form)
