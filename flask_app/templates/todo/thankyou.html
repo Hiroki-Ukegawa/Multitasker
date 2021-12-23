@@ -1,0 +1,17 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+サンキュー - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mt-5">
+            <h1 class="heading-h1 mt-5">お問い合わせありがとうございます。</h1>
+            <p class="paragraph-large d-flex col-sm-12 col-md-10 offset-md-1 text-left mt-3">内容確認の上、下記のメールアドレスより返信いたします。内容によっては返信を控えさせていただくか、お時間をいただく場合があります。</p>
+            <p class="paragraph-small mt-5">Multitasker管理者<br>multitasker.application☆☆☆gmail.com</p>
+            <p class="d-flex col-sm-12 col-md-9 offset-md-2 text-left">※迷惑メール対策のため、「☆☆☆」を使用して表記しております。「☆☆☆」を半角の「@」に変更してください。</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+ユーザー情報の更新 - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        {% for flashed_message in get_flashed_messages() %}
+        <div class="col-12 alert alert-success alert-dismissible fade show py-3 mb-0" role="alert">
+            {{ flashed_message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        
+        <div class="col-12 text-center mt-5">
+            <h4 style="font-weight: bold;">登録情報を更新する</h4>
+        </div>
+
+        <div class="col-sm-7 col-md-6 col-lg-5 my-3">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ render_field(form.username, value=current_user.username, maxlength=64) }}
+                {{ render_field(form.email, value=current_user.email, maxlength=64) }}
+                <div class="d-flex justify-content-center">
+                    <div class="mt-3">
+                        {{ form.submit(class="btn-other") }}
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center mt-3 pb-3" style="border-bottom: 2px solid #2C2E43;">
+                <a href="{{ url_for('todo.change_password') }}">※パスワードの変更はこちら</a>
+            </div>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+            <h4 style="font-weight: bold;">サービスを退会する</h4>
+            <p>下のボタンより退会ページへ遷移してください。</p>
+            <a href="{{ url_for('todo.delete_user') }}">
+                <button type="button" class="btn-other">退会する</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 text-center">
+                <p class="m-0"><i class="far fa-copyright"></i> 2021 Multitasker</p>
+            </div>
+            <div class="col-12 text-center">
+                <p class="m-0">
+                    <a href="{{ url_for('todo.terms') }}">利用規約</a> ・ 
+                    <a href="{{ url_for('todo.privacy') }}">プライバシー</a> ・ 
+                    <a href="{{ url_for('todo.contact') }}">お問い合わせ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

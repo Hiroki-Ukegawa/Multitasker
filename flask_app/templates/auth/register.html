@@ -1,0 +1,40 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+新規ユーザー登録 - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-12 text-center mt-5">
+            <h4 style="font-weight: bold;">新規ユーザー登録</h4>
+        </div>
+
+        <div class="col-sm-7 col-md-6 col-lg-5 my-3">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ render_field(form.username, maxlength=64) }}
+                {{ render_field(form.email, maxlength=64) }}
+                {{ render_field(form.password, maxlength=128) }}
+                {{ render_field(form.confirm_password) }}
+                <div class="d-flex flex-column">
+                    <div>
+                        <p class="mb-2">
+                            Multitasker への登録には、
+                            <a href="{{ url_for('todo.terms') }}" target="_blank" rel="noopener noreferrer">利用規約</a>
+                            及び
+                            <a href="{{ url_for('todo.privacy') }}" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+                            への同意をいただく必要があります。
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        {{ form.submit(class="btn-other") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

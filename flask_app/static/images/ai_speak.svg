@@ -1,0 +1,21 @@
+<svg width="560" height="423" viewBox="0 0 560 423" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M151 153.864C95.7715 153.864 51 129.046 51 98.4318C51 67.8177 95.7715 43 151 43C206.228 43 251 67.8177 251 98.4318C251 120.038 228.7 138.757 196.162 147.902L201.046 179.257L176.153 152.095C168.116 153.25 159.688 153.864 151 153.864Z" fill="#595260"/>
+<rect x="155" y="158" width="290" height="265" rx="122" fill="#B2B1B9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M188.455 196.072L393.186 400.802C373.336 414.787 349.127 423 323 423H277C209.621 423 155 368.379 155 301V280C155 247.485 167.72 217.941 188.455 196.072Z" fill="#595260"/>
+<rect x="180" y="208" width="240" height="190" rx="82" fill="#2C2E43"/>
+<circle cx="355" cy="303" r="25" fill="#CDCDCD"/>
+<circle cx="245" cy="303" r="25" fill="#CDCDCD"/>
+<circle cx="355" cy="303" r="20" fill="#E9E9E9"/>
+<circle cx="245" cy="303" r="20" fill="#E9E9E9"/>
+<circle cx="355" cy="303" r="15" fill="#F1F1F1"/>
+<circle cx="245" cy="303" r="15" fill="#F1F1F1"/>
+<rect x="275" y="340" width="50" height="20" fill="white"/>
+<rect x="275" y="340" width="5" height="20" fill="#CDCDCD"/>
+<rect x="280" y="340" width="5" height="20" fill="#E9E9E9"/>
+<rect x="320" y="340" width="5" height="20" fill="#CDCDCD"/>
+<rect x="315" y="340" width="5" height="20" fill="#E9E9E9"/>
+<rect x="345" y="293" width="20" height="20" fill="white"/>
+<rect x="235" y="293" width="20" height="20" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M315.07 124.629C404.271 122.717 475 95.5732 475 62.3684C475 27.9233 398.888 0 305 0C211.112 0 135 27.9233 135 62.3684C135 95.5732 205.729 122.717 294.929 124.629L305 158L315.07 124.629Z" fill="#B2B1B9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M442.5 145.964C507.393 145.964 560 125.153 560 99.4818C560 73.8106 507.393 53 442.5 53C377.607 53 325 73.8106 325 99.4818C325 117.599 351.203 133.296 389.434 140.965L383.696 167.257L412.946 144.481C422.388 145.449 432.292 145.964 442.5 145.964Z" fill="#595260"/>
+</svg>

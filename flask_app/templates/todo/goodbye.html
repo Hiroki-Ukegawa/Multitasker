@@ -1,0 +1,22 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+グッバイ - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mt-5">
+
+            {% for flashed_message in get_flashed_messages() %}
+            <p class="paragraph-large mt-3 mb-0">{{ flashed_message }}</p>
+            {% endfor %}
+            
+            <h1 class="heading-h1 mt-5"><span style="border-bottom: solid 3px #FFD523;">ご利用ありがとうございました！</span></h1>
+            <p class="paragraph-large mt-3 mb-0">また、いつでもお越しください。<br>お待ちしております。</p>
+            <p class="paragraph-small mt-3">Multitasker管理者</p>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

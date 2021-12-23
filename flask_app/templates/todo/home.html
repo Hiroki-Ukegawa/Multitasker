@@ -1,0 +1,314 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+ホーム - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        {% if current_user.is_authenticated %}
+        <div class="col-lg-9 row justify-content-center p-0">
+            <div class="col-12 row justify-content-center mt-sm-2">
+
+                <!-- キャラクター・メッセージ -->
+                <div class="col-md-8 d-flex align-items-center">
+                    <img class="image-small" src="{{ url_for('static', filename='images/ai_icon.svg') }}">
+                    <div class="balloon-left ml-4">
+                        <p>{{ message | replace_newline_and_username }}</p>
+                    </div>
+                </div>
+
+                <!-- タスク作成モーダル -->
+                <div class="col-md-4 d-flex align-items-center mb-3 mb-md-1">
+                    <div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="createTaskModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ url_for('todo.create_task') }}">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="createTaskModalTitle">タスクの新規作成</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ form.csrf_token }}
+                                        {{ render_field(form.taskname, maxlength=64) }}
+                                        {{ render_field(form.description, style="height: 100px;", maxlength=255) }}
+                                        {{ render_field(form.due, type="date", max="9999-12-31") }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{ form.submit(class="btn-other", value="新規作成") }}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- タスク作成ボタン -->
+                    <div class="col d-flex justify-content-center">
+                        <a href="#" class="btn-create-task align-items-center" data-toggle="modal" data-target="#createTaskModal">
+                            <i class="fas fa-plus" style="font-size: 30px;"></i>
+                            <span style="font-size: 15px; vertical-align: 25%;">　新規作成</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {%if not tasks %}
+            <div class="col-12 text-center mt-5 ">
+                <h5>タスクがありません</h5>
+                <p class="text-muted">休息を楽しみましょう！</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="image-background" src="{{ url_for('static', filename='images/ai_sleep.svg') }}">
+            </div>
+            {% endif %}
+
+            <div class="col-12">
+                {% for task in tasks %}
+
+                    <!-- タスク編集モーダル -->
+                    <div class="modal fade" id="updateTaskModal{{task.id}}" tabindex="-1" role="dialog" aria-labelledby="updateTaskModal{{task.id}}Title" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form method="POST" action="{{ url_for('todo.update_task', id=task.id) }}">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateTaskModal{{task.id}}Title">タスクの更新</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ form.csrf_token }}
+                                        {{ render_field(form.taskname, value=task.taskname, maxlength=64) }}
+                                        {{ render_field(form.description, id="descriptionOfTask"+task.id|string, style="height: 100px;", maxlength=255) }}
+                                        {{ render_field(form.due, value=task.due.date(), type="date", max="9999-12-31") }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        {{ form.submit(class="btn-other", value="更新") }}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- タスク削除モーダル -->
+                    <div class="modal fade bd-example-modal-sm" id="deleteTaskModal{{task.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTaskModal{{task.id}}Title" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="mt-2 mr-2">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body row">
+                                    <div class="col-8 d-flex align-items-center">
+                                        <p class="m-0">完全に削除しますか？</p>
+                                    </div>
+                                    <div class="col d-flex justify-content-end">
+                                        <a href="{{ url_for('todo.delete_uncompleted_task', id=task.id) }}">
+                                            <button type="button" class="btn-other">OK</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- タスク表示 -->
+                    {% if task.due.date() < today %}
+                    <div class="card overdue-task-shadow mb-3">
+                        <div class="card-body pt-1">
+                            <div class="text-right">
+                                <i class="fas fa-edit" data-toggle="modal" data-target="#updateTaskModal{{task.id}}"></i>
+                                <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTaskModal{{task.id}}"></i>
+                            </div>
+                            <div class="row px-3">
+                                <div class="col-md-8 pl-0">
+                                    <h5 class="card-title">{{ task.taskname }}</h5>
+                                    <p class="card-text text-muted mb-1">{{ task.description | replace_newline }}</p>
+                                    <p class="mb-0">期限：{{ task.due.date() }}<span style="color: red;">（期限切れ）</span></p>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-center align-items-end mt-3">
+                                    <div class="d-flex justify-content-center align-items-end">
+                                        <form type="POST" action="#">
+                                            {{ form.csrf_token }}
+                                            <div class="percent-complete align-items-center">
+                                                <input id="percentComplete100{{task.id}}" type="radio" name="{{task.id}}" style="pointer-events: none;"/>
+                                                <label for="percentComplete100{{task.id}}" class="p-0 mt-3 mb-2"><a href="{{ url_for('todo.complete_task', id=task.id) }}" class="btn-complete" style="font-size: 16px;">100%</a></label>
+                                                <input id="percentComplete80{{task.id}}" type="radio" name="{{task.id}}" value="80" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete80{{task.id}}" class="pr-3"><span class="text pr-2">80%</span>▶︎</label>
+                                                <input id="percentComplete60{{task.id}}" type="radio" name="{{task.id}}" value="60" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete60{{task.id}}"><span class="text">60%</span>▶︎</label>
+                                                <input id="percentComplete40{{task.id}}" type="radio" name="{{task.id}}" value="40" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete40{{task.id}}"><span class="text">40%</span>▶︎</label>
+                                                <input id="percentComplete20{{task.id}}" type="radio" name="{{task.id}}" value="20" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete20{{task.id}}"><span class="text">20%</span>▶︎</label>
+                                                <input id="percentComplete0{{task.id}}" type="radio" name="{{task.id}}" value="0" onchange="changeHandler(this)" checked/>
+                                                <label for="percentComplete0{{task.id}}"><span class="text">0%</span>●</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="card task-shadow mb-3">
+                        <div class="card-body pt-1">
+                            <div class="text-right">
+                                <i class="fas fa-edit" data-toggle="modal" data-target="#updateTaskModal{{task.id}}"></i>
+                                <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTaskModal{{task.id}}"></i>
+                            </div>
+                            <div class="row px-3">
+                                <div class="col-md-8 pl-0">
+                                    <h5 class="card-title">{{ task.taskname }}</h5>
+                                    <p class="card-text text-muted mb-1">{{ task.description | replace_newline }}</p>
+                                    <p class="small mb-0">期限：{{ task.due.date() }}</p>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-center align-items-end mt-3">
+                                    <div class="d-flex justify-content-center align-items-end">
+                                        <form type="POST" action="#">
+                                            <div class="percent-complete align-items-center">
+                                                {{ form.csrf_token }}
+                                                <input id="percentComplete100{{task.id}}" type="radio" name="{{task.id}}" style="pointer-events: none;"/>
+                                                <label for="percentComplete100{{task.id}}" class="p-0 mt-3 mb-2"><a href="{{ url_for('todo.complete_task', id=task.id) }}" class="btn-complete" style="font-size: 16px;">100%</a></label>
+                                                <input id="percentComplete80{{task.id}}" type="radio" name="{{task.id}}" value="80" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete80{{task.id}}" class="pr-3"><span class="text pr-2">80%</span>▶</label>
+                                                <input id="percentComplete60{{task.id}}" type="radio" name="{{task.id}}" value="60" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete60{{task.id}}"><span class="text">60%</span>▶︎</label>
+                                                <input id="percentComplete40{{task.id}}" type="radio" name="{{task.id}}" value="40" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete40{{task.id}}"><span class="text">40%</span>▶︎</label>
+                                                <input id="percentComplete20{{task.id}}" type="radio" name="{{task.id}}" value="20" onchange="changeHandler(this)"/>
+                                                <label for="percentComplete20{{task.id}}"><span class="text">20%</span>▶︎</label>
+                                                <input id="percentComplete0{{task.id}}" type="radio" name="{{task.id}}" value="0" onchange="changeHandler(this)" checked/>
+                                                <label for="percentComplete0{{task.id}}"><span class="text">0%</span>●</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+        {% else %}
+        <div class="col-12 text-center mt-4 mb-1">
+            <div class="d-flex justify-content-center">
+                <img class="image-logo-large my-2" src="{{ url_for('static', filename='logo/logo_large.svg') }}">
+            </div>
+            <h1 class="heading-h1 my-4">Multitaskerが<br>あなたのマルチタスクをサポート</h1>
+            <div class="d-flex justify-content-center">
+                <img class="image-large my-2" src="{{ url_for('static', filename='images/ai_multitasking.svg') }}">
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-5 col-lg-4 text-center mt-3">
+            <a class="btn-auth" href="{{ url_for('auth.register') }}">無料で始める</a>
+        </div>
+        <div class="col-sm-6 col-md-5 col-lg-4 text-center mt-3 mb-5">
+            <a class="btn-auth" href="{{ url_for('auth.login') }}">ログイン</a>
+        </div>
+
+        <div class="col-12 text-center mt-5 mb-1">
+            <h2 class="heading-h2">こんな課題にMultitasker</h2>
+        </div>
+        <div class="col-11 col-md-10 offset-md-2 col-lg-9 offset-lg-3 mb-5">
+            <p class="paragraph-large"><i class="far fa-check-circle"></i> <span style="border-bottom: solid 3px #FFD523;">複数のタスクを同時に進める必要がある</span></p>
+            <p class="paragraph-large"><i class="far fa-check-circle"></i> <span style="border-bottom: solid 3px #FFD523;">タスクが多すぎてToDoリストを整理しきれない</span></p>
+            <p class="paragraph-large"><i class="far fa-check-circle"></i> <span style="border-bottom: solid 3px #FFD523;">まだ自分に合ったタスク管理アプリに出会えていない</span></p>
+        </div>
+
+        <div class="col-12 text-center mt-5">
+            <h2 class="heading-h2">Multitaskerの特徴</h2>
+        </div>
+        <div class="col-9 col-md-4 text-center mt-1">
+            <h3 class="heading-h3">1. 完了度の見える化</h3>
+            <div class="text-left">
+                <p class="paragraph-small">タスク毎に設定可能な完了度は、複数のタスクを切り替えながら少しずつ進めるのに役立ちます。</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="image-middle mb-3" src="{{ url_for('static', filename='images/completed.svg') }}">
+            </div>
+        </div>
+        <div class="col-9 col-md-4 text-center mt-1">
+            <h3 class="heading-h3">2. シンプルな構造</h3>
+            <div class="text-left">
+                <p class="paragraph-small">複雑な操作は一切不要で、タスクの設定に時間を取られてしまうような心配はありません。</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="image-middle mb-5" src="{{ url_for('static', filename='images/gear.svg') }}">
+            </div>
+        </div>
+        <div class="col-9 col-md-4 text-center mt-1">
+            <h3 class="heading-h3">3. 小さなアシスト</h3>
+            <div class="text-left">
+                <p class="paragraph-small">これはおまけのような機能ですが、時々、有益なことを呟く（かもしれない）ロボットがいます。</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="image-middle mb-5" src="{{ url_for('static', filename='images/ai_speak.svg') }}">
+            </div>
+        </div>
+
+        <div class="col-12 text-center mt-5 mb-1">
+            <h2 class="heading-h2">Multitaskerをお試しください！</h2>
+            <div class="d-flex justify-content-center">
+                <img class="image-large-shadow my-2" src="{{ url_for('static', filename='images/screenshot.jpg') }}">
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-5 col-lg-4 text-center mt-3">
+            <a class="btn-auth" href="{{ url_for('auth.register') }}">無料で始める</a>
+        </div>
+        <div class="col-sm-6 col-md-5 col-lg-4 text-center my-3">
+            <a class="btn-auth" href="{{ url_for('auth.login') }}">ログイン</a>
+        </div>
+        {% endif %}
+        
+    </div>
+</div>
+
+<script>
+    //タスク完了度の登録
+    function changeHandler(input_value) {
+        const percentCompleteOfTask = $(input_value).serialize();
+        $.ajax({
+            url: '/percent_complete_ajax',
+            type: "POST",
+            data: percentCompleteOfTask,
+            dataType: "json",
+        });
+    }
+</script>
+
+{% for task in tasks %}
+<script>
+    //タスク編集モーダルのtextareaに登録内容を表示
+    var descriptionOfTask = document.querySelector('#descriptionOfTask{{task.id}}');
+    var text = '{{ task.description | replace_newline }}';
+    descriptionOfTask.innerHTML = text.replace(/<br>/g, '\n');
+
+    //タスク完了度を表示
+    var percent = Number('{{task.percent_complete}}');
+    if (percent === 20){
+        const percentComplete20 = document.querySelector('#percentComplete20{{task.id}}');
+        percentComplete20.checked = true;
+    } else if (percent === 40){
+        const percentComplete40 = document.querySelector('#percentComplete40{{task.id}}');
+        percentComplete40.checked = true;
+    } else if (percent === 60){
+        const percentComplete60 = document.querySelector('#percentComplete60{{task.id}}');
+        percentComplete60.checked = true;
+    } else if (percent === 80){
+        const percentComplete80 = document.querySelector('#percentComplete80{{task.id}}');
+        percentComplete80.checked = true;
+    }
+</script>
+{% endfor %}
+
+{% endblock %}

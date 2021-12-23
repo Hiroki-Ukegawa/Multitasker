@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}
+完了したタスク - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 row justify-content-center p-0">
+
+            {%if not tasks %}
+            <div class="col-12 text-center mt-5">
+                <h5>完了したタスクがありません</h5>
+                <p class="text-muted">まずは1分間、取り組んでみましょう</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img class="image-background" src="{{ url_for('static', filename='images/ai_multitasking.svg') }}">
+            </div>
+            {% endif %}
+            
+            <div class="col-12 my-3">
+            {% for task in tasks %}
+                
+                <div class="modal fade bd-example-modal-sm" id="deleteTaskModal{{task.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteTaskModal{{task.id}}Title" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="mt-2 mr-2">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-8 d-flex align-items-center">
+                                    <p class="m-0">完全に削除しますか？</p>
+                                </div>
+                                <div class="col d-flex justify-content-end">
+                                    <a href="{{ url_for('todo.delete_completed_task', id=task.id) }}">
+                                        <button type="button" class="btn-other">OK</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body pt-1">
+                        <div class="text-right">
+                            <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteTaskModal{{task.id}}"></i>
+                        </div>
+                        <div class="row px-3">
+                            <div class="col-md-10 pl-0">
+                                <h5 class="card-title text-muted">{{ task.taskname }}</h5>
+                                <p class="card-text text-muted mb-1">{{ task.description | replace_newline }}</p>
+                                <p class="small mb-0">期限：{{ task.due.date() }}</p>
+                            </div>
+                            <div class="col-md-2 d-flex justify-content-end align-items-end mt-3">
+                                <a href="{{ url_for('todo.uncomplete_task', id=task.id) }}" class="btn-uncomplete">Uncomplete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

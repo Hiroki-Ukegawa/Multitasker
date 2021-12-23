@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+500エラー - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 row justify-content-center p-0">
+            <div class="col-12 text-center mt-5">
+                <h1>500エラー</h1>
+                <div class="text-left">
+                <p class="text-muted">申し訳ございません。メンテナンス中又は、サーバーの問題によりページが表示できませんでした。復旧にはしばらくかかる場合があります。</p>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <img class="image-background" src="{{ url_for('static', filename='images/ai_no_signal.svg') }}">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

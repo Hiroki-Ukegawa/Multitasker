@@ -1,0 +1,29 @@
+<svg width="660" height="396" viewBox="0 0 660 396" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="185" y="131" width="290" height="265" rx="122" fill="#B2B1B9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M471.434 303.401C458.277 356.577 410.242 396 353 396H307C249.758 396 201.723 356.577 188.566 303.401L330 318.5L471.434 303.401Z" fill="#595260"/>
+<rect x="210" y="163" width="240" height="167" rx="82" fill="#2C2E43"/>
+<circle cx="385" cy="215" r="25" fill="#CDCDCD"/>
+<circle cx="275" cy="215" r="25" fill="#CDCDCD"/>
+<circle cx="385" cy="215" r="20" fill="#E9E9E9"/>
+<circle cx="275" cy="215" r="20" fill="#E9E9E9"/>
+<circle cx="385" cy="215" r="15" fill="#F1F1F1"/>
+<circle cx="275" cy="215" r="15" fill="#F1F1F1"/>
+<rect x="305" y="250" width="50" height="28" fill="white"/>
+<rect x="305" y="250" width="5" height="28" fill="#CDCDCD"/>
+<rect x="310" y="250" width="5" height="28" fill="#E9E9E9"/>
+<rect x="350" y="250" width="5" height="28" fill="#CDCDCD"/>
+<rect x="345" y="250" width="5" height="28" fill="#E9E9E9"/>
+<rect x="375" y="205" width="20" height="20" fill="white"/>
+<rect x="265" y="205" width="20" height="20" fill="white"/>
+<circle cx="110" cy="111" r="40" fill="white" stroke="#2C2E43" stroke-width="6"/>
+<path d="M111.5 82.5V113L97 98" stroke="#2C2E43" stroke-width="5"/>
+<path d="M0 161L100 125V248.5L0 271.5V161Z" fill="#23FF7B" fill-opacity="0.49"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M91.1289 250.54L12.9968 268.511C19.4954 240.192 35.8509 219.5 55 219.5C69.7977 219.5 82.9272 231.857 91.1289 250.54Z" fill="#1CC861" fill-opacity="0.56"/>
+<path d="M85 204L165 182V296.5L85 304.5V204Z" fill="#23FF7B" fill-opacity="0.49"/>
+<path d="M510 80L624 146V249L510 220V80Z" fill="#23FF7B" fill-opacity="0.49"/>
+<path d="M578 187L659.5 216V300.5L578 291V187Z" fill="#23FF7B" fill-opacity="0.49"/>
+<path d="M602 218V267.432L649 277V233.865M602 218L649 233.865M602 218L630.699 259.041L649 233.865" stroke="#1CC861" stroke-opacity="0.56" stroke-width="4"/>
+<path d="M177 35.0007C177 35.0007 267.274 0.195489 328.37 0.000827083C390.321 -0.196556 482 35.0007 482 35.0007V221C482 221 388.6 208.93 328.37 209C269.02 209.069 177 221 177 221V35.0007Z" fill="#23FF7B" fill-opacity="0.49"/>
+<path d="M464 127.5L451 97L427 146.5L406 114.5L366.5 177.5L346.5 30L313 127.5L284 97L266.5 146.5L239 114.5L223 138L196 66" stroke="#1CC861" stroke-opacity="0.56" stroke-width="7"/>
+<circle cx="52" cy="200" r="15" fill="#1CC861" fill-opacity="0.56"/>
+</svg>

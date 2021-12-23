@@ -1,0 +1,32 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+退会 - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center mt-5">
+            <h4 style="font-weight: bold;">サービスを退会する</h4>
+        </div>
+        <div class="col-sm-10 col-md-9 col-lg-8 col-11 mt-2">
+            <p>退会には現在のパスワードが必要です。退会後一定の期間（数日程度）が過ぎると、登録したタスク・ニックネーム・メールアドレス・パスワードの情報は全て削除され、復元することができません。</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-7 col-md-6 col-lg-5 my-3">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ render_field(form.current_password) }}
+                <div class="d-flex justify-content-center">
+                    <div class="mt-3">
+                        {{ form.submit(class="btn-other") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,270 @@
+@font-face {
+  font-family: 'myfont';
+  src: url('../../static/fonts/PixelMplus12-Regular.ttf') format('truetype');
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.75em;
+  margin-bottom: 70px;
+}
+
+ol {
+  padding-left: 25px;
+}
+
+.color-1 {
+  background-color: #2C2E43;
+}
+.color-2 {
+  background-color: #f0f0f5;
+}
+
+.navbar-nav li a {
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+}
+.navbar-nav li a:hover {
+  color: #FFF;
+  transition: .4s;
+  text-shadow: -3px 0px 8px rgba(255, 255, 255, 0.8),
+               3px 0px 8px rgba(255, 255, 255, 0.8);
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.heading-h1 {
+  font-size: clamp(18px, 4.5vw, 40px);
+  font-weight: bold;
+}
+.heading-h2 {
+  font-size: clamp(18px, 4vw, 30px);
+  font-weight: bold;
+}
+.heading-h3 {
+  font-size: clamp(17px, 2.2vw, 25px);
+  font-weight: bold;
+}
+
+.paragraph-small {
+  font-size: clamp(13px, 3vw, 15px);
+}
+.paragraph-large {
+  font-size: clamp(13px, 3vw, 20px);
+}
+
+.image-logo-small {
+  width: 30px;
+}
+.image-logo-large {
+  width: 200px;
+}
+.image-small {
+  width: 55px;
+}
+.image-middle {
+  width: 220px;
+}
+.image-large {
+  width: clamp(300px, 45vw, 400px);
+}
+.image-large-shadow {
+  width: clamp(300px, 70vw, 700px);
+  box-shadow: 0px 0px 7px #2C2E43;;
+}
+.image-background {
+  opacity: 0.5;
+  width: 300px;
+}
+
+.btn-auth {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  width: 240px;
+  padding: 10px;
+  background: #2C2E43;
+  border-radius: 25px;
+  transition: .4s;
+}
+.btn-auth:hover {
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: -6px 0px 15px rgba(255, 255, 255, 0.8),
+                6px 0px 15px rgba(255, 255, 255, 0.8);
+}
+.btn-create-task {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  padding: 0.5em 2em;
+  background: #2C2E43;
+  border-top: solid 3px #52557a;
+  border-bottom: solid 3px #171824;
+  border-radius: 25px;
+  transition: .4s;
+}
+.btn-create-task:hover {
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: -6px 0px 15px rgba(255, 255, 255, 0.8),
+                6px 0px 15px rgba(255, 255, 255, 0.8);
+}
+.btn-complete {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  padding: 0.25em 0.5em;
+  background: #595260;
+  border-top: solid 3px #857a8f;
+  border-bottom: solid 3px #39343d;
+  border-radius: 6px;
+  transition: .4s;
+}
+.btn-complete:hover {
+  text-decoration: none;
+  background: #FFD523;
+  border-top: solid 3px #ffe364;
+  border-bottom: solid 3px #eec81d;
+  color: #FFF;
+  text-shadow: -6px 0px 15px rgba(255, 255, 255, 0.8),
+                6px 0px 15px rgba(255, 255, 255, 0.8);
+}
+.btn-uncomplete {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  padding: 0.25em 0.5em;
+  background: #595260;
+  border-top: solid 3px #857a8f;
+  border-bottom: solid 3px #39343d;
+  border-radius: 6px;
+  transition: .4s;
+}
+.btn-uncomplete:hover {
+  text-decoration: none;
+  background: #B2B1B9;
+  border-top: solid 3px #cecdd4;
+  border-bottom: solid 3px #808085;
+  color: #FFF;
+  text-shadow: -6px 0px 15px rgba(255, 255, 255, 0.8),
+                6px 0px 15px rgba(255, 255, 255, 0.8);
+}
+.btn-other {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+  padding: 0.5em 1.7em;
+  background: #2C2E43;
+  border-radius: 6px;
+  transition: .4s;
+}
+.btn-other:hover {
+  text-decoration: none;
+  color: #FFF;
+  text-shadow: -6px 0px 15px rgba(255, 255, 255, 0.8),
+               6px 0px 15px rgba(255, 255, 255, 0.8);
+}
+
+.balloon-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 10px;
+  padding: 17px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #2C2E43;
+  font-family: 'myfont', sans-serif;
+  font-size: 12px;
+  background: #B2B1B9;
+  border-radius: 15px;
+}
+.balloon-left:before {
+  content: "";
+  position: absolute;
+  top: 62%;
+  left: -20px;
+  margin-top: -15px;
+  border: 8px solid transparent;
+  border-right: 15px solid #B2B1B9;
+}
+.balloon-left p {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+}
+
+.fa-edit,
+.fa-trash-alt {
+  font-size: 16px;
+  padding: 4px;
+}
+.fa-edit:hover,
+.fa-trash-alt:hover {
+  cursor: pointer;
+  background-color: #f0f0f5;
+  border-radius: 3px;
+}
+
+.task-shadow {
+  box-shadow: 0px 0px 2px #2C2E43;
+}
+.overdue-task-shadow {
+  box-shadow: 0px 0px 8px red;
+}
+
+.percent-complete{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.percent-complete input[type='radio']{
+  display: none;
+}
+.percent-complete label{
+  position: relative;
+  padding: 12px 4px 0;
+  color: #595260;
+  cursor: pointer;
+  font-size: 20px;
+}
+.percent-complete label .text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: #595260;
+}
+.percent-complete label:hover,
+.percent-complete label:hover ~ label,
+.percent-complete input[type='radio']:checked ~ label{
+  color: #FFD523;
+  transition: .4s;
+}

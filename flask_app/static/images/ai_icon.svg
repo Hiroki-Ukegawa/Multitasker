@@ -1,0 +1,18 @@
+<svg width="290" height="265" viewBox="0 0 290 265" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="290" height="265" rx="122" fill="#B2B1B9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.4553 38.072L238.186 242.802C218.336 256.787 194.127 265 168 265H122C54.6213 265 0 210.379 0 143V122C0 89.4849 12.72 59.9407 33.4553 38.072Z" fill="#595260"/>
+<rect x="25" y="50" width="240" height="190" rx="82" fill="#2C2E43"/>
+<circle cx="200" cy="145" r="25" fill="#CDCDCD"/>
+<circle cx="90" cy="145" r="25" fill="#CDCDCD"/>
+<circle cx="200" cy="145" r="20" fill="#E9E9E9"/>
+<circle cx="90" cy="145" r="20" fill="#E9E9E9"/>
+<circle cx="200" cy="145" r="15" fill="#F1F1F1"/>
+<circle cx="90" cy="145" r="15" fill="#F1F1F1"/>
+<rect x="120" y="182" width="50" height="20" fill="white"/>
+<rect x="120" y="182" width="5" height="20" fill="#CDCDCD"/>
+<rect x="125" y="182" width="5" height="20" fill="#E9E9E9"/>
+<rect x="165" y="182" width="5" height="20" fill="#CDCDCD"/>
+<rect x="160" y="182" width="5" height="20" fill="#E9E9E9"/>
+<rect x="190" y="135" width="20" height="20" fill="white"/>
+<rect x="80" y="135" width="20" height="20" fill="white"/>
+</svg>

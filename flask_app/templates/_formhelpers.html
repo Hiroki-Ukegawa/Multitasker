@@ -1,0 +1,29 @@
+{% macro render_field(field) %}
+<div class="form-group">
+    <label for="{{ field.name }}" class="control-label">{{ field.label.text }}</label>
+    <div class="col">
+        {{ field(class_="form-control", **kwargs) | safe }}
+        <ul>
+            {% for error in field.errors %}
+            <li class="small" style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_radiofield(field) %}
+<dt>
+    {{ field.label }}
+    <dd>
+        {{ field(**kwargs) | safe }}
+        {% if field.errors %}
+            <ul class="errors">
+                {% for error in field.errors %}
+                <li class="small" style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </dd>
+</dt>
+{% endmacro %}

@@ -1,0 +1,37 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}
+タスクの更新 - 
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-12 text-center mt-5">
+            <h4 style="font-weight: bold;">タスクの更新</h4>
+        </div>
+
+        <div class="col-sm-7 col-md-6 col-lg-5 my-3">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{ render_field(form.taskname, value=task.taskname, maxlength=64) }}
+                {{ render_field(form.description, id="descriptionOfTask", style="height: 100px;", maxlength=255) }}
+                {{ render_field(form.due, value=task.due.date(), type="date", max="9999-12-31") }}
+                <div class="d-flex justify-content-center">
+                    <div class="mt-3">
+                        {{ form.submit(class="btn-other", value="更新") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    const descriptionOfTask = document.querySelector('#descriptionOfTask');
+    const text = '{{ task.description | replace_newline }}';
+    descriptionOfTask.innerHTML = text.replace(/<br>/g, '\n');
+</script>
+
+{% endblock %}
