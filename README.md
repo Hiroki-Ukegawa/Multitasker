@@ -4,7 +4,9 @@
 タスク毎に完了度を設定することで、タスクを切り替えながら少しずつ進められるようにしています。  
 レスポンシブ対応しているのでスマホからもご確認いただけます。
 
-https://multitasker-app.herokuapp.com/
+https://multitasker-app.herokuapp.com/  
+【ゲスト用アカウント】  
+メールアドレス：gest@gest.com／パスワード：12345678
 
 ![screenshot](https://user-images.githubusercontent.com/66906495/149077476-e2253f70-d5ad-48cb-bc26-afa8b63348ea.jpg)
 
