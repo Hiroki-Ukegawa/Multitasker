@@ -6,7 +6,7 @@
 
 https://multitasker-app.herokuapp.com/  
 【ゲスト用アカウント】  
-メールアドレス：gest@gest.com／パスワード：12345678
+メールアドレス：guest@guest.guest／パスワード：12345678
 
 ![screenshot](https://user-images.githubusercontent.com/66906495/149077476-e2253f70-d5ad-48cb-bc26-afa8b63348ea.jpg)
 
