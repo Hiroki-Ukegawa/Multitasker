@@ -5,6 +5,7 @@
 レスポンシブ対応しているのでスマホからでもご確認いただけます。
 
 https://multitasker-app.herokuapp.com/  
+※運用停止中
 
 ![screenshot](https://user-images.githubusercontent.com/66906495/149077476-e2253f70-d5ad-48cb-bc26-afa8b63348ea.jpg)
 
